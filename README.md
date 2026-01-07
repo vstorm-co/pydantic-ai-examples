@@ -1,4 +1,4 @@
-# PydanticAI Classification Examples
+# PydanticAI Model Parameters Examples
 
 
 ### 1. Model Parameters
