@@ -14,8 +14,8 @@ def create_dynamic_classifier(classes: list[str]) -> type[BaseModel]:
     
     return create_model(
         "DynamicResult",
-        category=(literal_type, Field(...)),
-        reasoning=(str, Field(...)),
+        category=(literal_type, Field(description="Chosen category")),
+        reasoning=(str, Field(description="Model reasoning", min_length=1)),
         __base__=BaseModel,
     )
 ```
