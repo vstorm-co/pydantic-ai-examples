@@ -40,7 +40,6 @@ REVIEWS = [
     ("Waste of money. Do not recommend at all.", "negative"),
     ("The product works as advertised. No complaints.", "neutral"),
     ("Outstanding quality and fast shipping!", "positive"),
- 
 ]
 
 
