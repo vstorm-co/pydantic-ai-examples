@@ -13,7 +13,7 @@ load_dotenv()
 
 def create_dynamic_classifier(classes: list[str]) -> type[BaseModel]:
     """Dynamically create a Pydantic model with runtime-defined Literal classes."""
-    literal_type = Literal[tuple(classes)]  # type: ignore
+    literal_type = Literal[*tuple(classes)]  # type: ignore
     
     return create_model(
         "DynamicResult",
