@@ -32,8 +32,8 @@ agent = Agent(
 ## Running
 
 ```bash
-cd model_parameters
-uv run parameter_demo.py
+cd temperature
+uv run temperature_demo.py
 ```
 
 ## Example Output
