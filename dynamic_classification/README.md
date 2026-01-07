@@ -36,12 +36,12 @@ Dynamic Classification with PydanticAI
 
 Same code adapts to any number of classes at runtime
 
-Example 1: Binary Sentiment
-Classes (2): ['positive', 'negative']
+Example 1: 5-Way Emotion
+Classes (5): ['joy', 'sadness', 'anger', 'fear', 'neutral']
 Text: The movie was absolutely fantastic!
 
-Result: positive
-Reasoning: Strong positive language indicates enthusiasm
+Result: joy
+Reasoning: The text expresses strong enjoyment and enthusiasm, which maps to 'joy'
 ```
 
 ## Use Cases
