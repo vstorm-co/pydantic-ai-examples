@@ -38,8 +38,8 @@ uv run reasoning_demo.py
 
 ## Use Cases
 
-| Reasoning Effort | Latency | Best For |
-|-----------------|---------|----------|
+| Reasoning Effort  Best For |
+|-----------------|----------|
 | low  | Simple queries, quick responses |
 | medium  | General problem-solving |
 | high | Complex math, logic, planning |
