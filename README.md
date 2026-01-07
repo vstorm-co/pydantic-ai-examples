@@ -27,13 +27,10 @@ Demonstrates reasoning_effort parameter for GPT-4o and o1 models.
 
 ### Setup
 # Set API key
+```bash
 echo "OPENAI_API_KEY=your-key" > .env
-```
 
 ### Run Examples
-
-```bash
-
 # Model parameters
 cd temperature
 uv run temperature_demo.py
@@ -43,7 +40,7 @@ cd reasoning_effort
 uv run reasoning_demo.py
 
 ## Project Structure
-```
+
 ├── temperature/
 │   ├── temperature_demo.py
 │   └── README.md
