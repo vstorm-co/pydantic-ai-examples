@@ -22,7 +22,7 @@ class SentimentResult(BaseModel):
 
 
 sentiment_agent = Agent(
-    "openai:gpt-4o-mini",
+    "openai:gpt-5.2",
     output_type=SentimentResult,
     retries=0,
     system_prompt=(

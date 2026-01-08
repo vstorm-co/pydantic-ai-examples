@@ -34,7 +34,7 @@ async def classify(text: str, classes: list[str], domain: str = "category") -> B
     ResultModel = create_dynamic_classifier(classes)
     
     agent = Agent(
-        "openai:gpt-4o-mini",
+        "openai:gpt-5.2",
         output_type=ResultModel,
         system_prompt=f"Classify text into one of these {domain} categories: {', '.join(classes)}",
     )
