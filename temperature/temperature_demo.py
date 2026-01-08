@@ -8,14 +8,14 @@ load_dotenv()
 
 
 class StoryOpening(BaseModel):
-    text: str = Field(description="Opening paragraph of a story")
+    text: str = Field(description="Opening paragraphs of a story")
 
 
 async def test_temperature_creative_writing():
     """Demonstrate how temperature affects creative writing."""
     print("Temperature in Creative Writing\n")
     print("=" * 70)
-    print("Prompt: Write the opening paragraph of a mystery novel\n")
+    print("Prompt: Write few opening paragraphs of a mystery novel\n")
     
     temperatures = [0.3, 0.8, 1.5]
     
@@ -26,7 +26,7 @@ async def test_temperature_creative_writing():
             model_settings=ModelSettings(temperature=temp),
         )
         
-        result = await agent.run("Write the opening paragraph of a mystery novel set in a small coastal town.")
+        result = await agent.run("Write few opening paragraphs of a mystery novel set in a small coastal town.")
         
         print(f"Temperature: {temp}")
         print(f"Output:\n{result.output.text}\n")
