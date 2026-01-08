@@ -1,48 +1,47 @@
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent
-from pydantic_ai.models import ModelSettings
 from dotenv import load_dotenv
+from pydantic_ai import Agent
+from pydantic_ai.models.openai import OpenAIResponsesModelSettings
+
 
 load_dotenv()
 
 
+
 class Solution(BaseModel):
     answer: str = Field(description="Solution to the problem")
-    reasoning: str = Field(description="Step-by-step reasoning process")
 
 
 async def test_reasoning_effort():
     """Compare reasoning effort levels on a complex problem."""
     print("Reasoning Effort Parameter Comparison\n")
     print("=" * 70)
-    
+
     problem = """
     A farmer has chickens and rabbits. There are 35 heads and 94 legs total.
     How many chickens and how many rabbits are there?
     """
-    
+
     print(f"Problem: {problem.strip()}\n")
-    
+
     efforts = ["low", "medium", "high"]
-    
+
     for effort in efforts:
         agent = Agent(
-            "openai:gpt-4o",
+            "openai:gpt-5.2",
             output_type=Solution,
-            model_settings=ModelSettings(reasoning_effort=effort),
+            model_settings=OpenAIResponsesModelSettings(
+                openai_reasoning_effort=effort,
+                openai_reasoning_summary="detailed",
+            ),
         )
-        
+
         result = await agent.run(f"Solve this problem:\n{problem}")
-        
+
         print(f"Reasoning Effort: {effort}")
         print(f"Answer: {result.output.answer}")
-        print(f"Reasoning:\n{result.output.reasoning}\n")
         print("-" * 70)
-    
-    print("\nObservations:")
-    print("- low: Faster response, direct solution path")
-    print("- medium: Balanced speed and reasoning depth")
-    print("- high: Thorough analysis, explicit step verification\n")
 
 
 async def test_complex_planning():
@@ -60,15 +59,17 @@ async def test_complex_planning():
     print(f"Problem: {problem.strip()}\n")
     
     agent = Agent(
-        "openai:gpt-4o",
+        "openai:gpt-5.2",
         output_type=Solution,
-        model_settings=ModelSettings(reasoning_effort="high"),
+            model_settings=OpenAIResponsesModelSettings(
+                openai_reasoning_effort="high",
+                openai_reasoning_summary="detailed",
+            ),
     )
     
     result = await agent.run(f"Solve this traveling salesman problem:\n{problem}")
     
     print(f"Answer: {result.output.answer}")
-    print(f"Reasoning:\n{result.output.reasoning}\n")
     print("-" * 70)
 
 
