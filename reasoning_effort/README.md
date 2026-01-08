@@ -1,7 +1,5 @@
 # Reasoning Effort Parameter
 
-Demonstrates the `reasoning_effort` parameter available in GPT-4o and o1 series models.
-
 ## Overview
 
 The `reasoning_effort` parameter controls the depth of internal reasoning before generating output.
@@ -18,16 +16,7 @@ This parameter affects:
 - Verification steps performed before output
 - Trade-off between latency and solution quality
 
-## Implementation
 
-```python
-from pydantic_ai.models import ModelSettings
-
-agent = Agent(
-    "openai:gpt-4o",
-    model_settings=ModelSettings(reasoning_effort="high")
-)
-```
 
 ## Running
 
@@ -38,7 +27,7 @@ uv run reasoning_demo.py
 
 ## Use Cases
 
-| Reasoning Effort  Best For |
+| Reasoning Effort | Best For |
 |-----------------|----------|
 | low  | Simple queries, quick responses |
 | medium  | General problem-solving |
@@ -68,14 +57,6 @@ uv run reasoning_demo.py
 ## Model Availability
 - Make sure chosen model supports reasoning effort 
 
-## Performance Impact
-
-**Latency:**
-```
-low:    1.2x baseline
-medium: 2.0x baseline  
-high:   3.5x baseline
-```
 
 **Token Usage:**
 - Reasoning tokens are generated internally but not counted toward output
