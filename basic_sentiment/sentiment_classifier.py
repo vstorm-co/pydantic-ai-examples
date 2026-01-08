@@ -11,6 +11,17 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+REVIEWS = [
+    ("This product is absolutely amazing! Best purchase ever!", "positive"),
+    ("Terrible quality, broke after one day. Very disappointed.", "negative"),
+    ("It's okay, nothing special but does the job.", "neutral"),
+    ("I love this! Exceeded all my expectations.", "positive"),
+    ("Waste of money. Do not recommend at all.", "negative"),
+    ("The product works as advertised. No complaints.", "neutral"),
+    ("Outstanding quality and fast shipping!", "positive"),
+]
+
+
 class SentimentResult(BaseModel):
     sentiment: Literal["positive", "negative", "neutral"] = Field(
         description="The sentiment category of the text"
@@ -31,16 +42,6 @@ sentiment_agent = Agent(
     ),
 )
 
-
-REVIEWS = [
-    ("This product is absolutely amazing! Best purchase ever!", "positive"),
-    ("Terrible quality, broke after one day. Very disappointed.", "negative"),
-    ("It's okay, nothing special but does the job.", "neutral"),
-    ("I love this! Exceeded all my expectations.", "positive"),
-    ("Waste of money. Do not recommend at all.", "negative"),
-    ("The product works as advertised. No complaints.", "neutral"),
-    ("Outstanding quality and fast shipping!", "positive"),
-]
 
 
 async def main():
