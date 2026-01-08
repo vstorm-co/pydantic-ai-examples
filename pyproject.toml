@@ -1,5 +1,6 @@
 [project]
 name = "pydantic-ai-classification-demo"
+license = { text = "MIT" }
 version = "0.1.0"
 description = "Parameter manipulation with PydanticAI"
 readme = "README.md"
@@ -9,3 +10,5 @@ dependencies = [
     "openai>=1.0.0",
     "python-dotenv>=1.0.0",
 ]
+[project.urls]
+License = "https://opensource.org/license/mit/"
