@@ -13,9 +13,10 @@ class StoryOpening(BaseModel):
 
 async def test_temperature_creative_writing():
     """Demonstrate how temperature affects creative writing."""
+    prompt="Write few opening paragraphs of a mystery novel set in a small coastal town."
     print("Temperature in Creative Writing\n")
     print("=" * 70)
-    print("Prompt: Write few opening paragraphs of a mystery novel\n")
+    print(f"Prompt: {prompt}\n")
     
     temperatures = [0.3, 0.8, 1.5]
     
@@ -26,7 +27,7 @@ async def test_temperature_creative_writing():
             model_settings=ModelSettings(temperature=temp),
         )
         
-        result = await agent.run("Write few opening paragraphs of a mystery novel set in a small coastal town.")
+        result = await agent.run(prompt)
         
         print(f"Temperature: {temp}")
         print(f"Output:\n{result.output.text}\n")
