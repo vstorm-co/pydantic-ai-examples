@@ -55,7 +55,7 @@ uv run reasoning_demo.py
 - Classification
 
 ## Model Availability
-- Make sure chosen model supports reasoning effort 
+- Make sure chosen model supports reasoning effort
 
 
 **Token Usage:**

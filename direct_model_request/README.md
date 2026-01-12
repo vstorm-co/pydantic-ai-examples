@@ -6,7 +6,7 @@ This example demonstrates how to use pydantic-ai's **direct API** to make model 
 
 **Use Direct API when:**
 - You need more direct control over model interactions
-- You want to implement custom behavior around model requests  
+- You want to implement custom behavior around model requests
 - You're building your own abstractions on top of model interactions
 
 **Use Agent API for:**

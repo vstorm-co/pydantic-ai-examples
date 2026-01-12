@@ -81,7 +81,7 @@ uv run direct_request_demo.py
 cd temperature
 uv run temperature_demo.py
 
-# Reasoning effort 
+# Reasoning effort
 cd reasoning_effort
 uv run reasoning_demo.py
 
