@@ -11,7 +11,7 @@ This example demonstrates how to build a classifier that adapts to **any number 
 ```python
 def create_dynamic_classifier(classes: list[str]) -> type[BaseModel]:
     literal_type = Literal[tuple(classes)]  # Dynamic Literal!
-    
+
     return create_model(
         "DynamicResult",
         category=(literal_type, Field(description="Chosen category")),

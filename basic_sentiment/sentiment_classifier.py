@@ -4,9 +4,10 @@ Fixed 3-class sentiment analysis with structured outputs.
 """
 
 from typing import Literal
+
+from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent
-from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -23,16 +24,11 @@ REVIEWS = [
 
 
 class SentimentResult(BaseModel):
-    sentiment: Literal["positive", "negative", "neutral"] = Field(
-        description="The sentiment category of the text"
-    )
-    reasoning: str = Field(
-        min_length=10,
-        description="Brief explanation for the sentiment classification"
-    )
+    sentiment: Literal["positive", "negative", "neutral"] = Field(description="The sentiment category of the text")
+    reasoning: str = Field(min_length=10, description="Brief explanation for the sentiment classification")
 
 
-sentiment_agent = Agent(
+sentiment_agent = Agent[None, SentimentResult](
     "openai:gpt-5.2",
     output_type=SentimentResult,
     retries=0,
@@ -43,38 +39,38 @@ sentiment_agent = Agent(
 )
 
 
-
 async def main():
     print("Sentiment Analysis with PydanticAI\n")
     print("=" * 70)
-    
+
     correct = 0
     total = len(REVIEWS)
-    
+
     for i, (text, expected) in enumerate(REVIEWS, 1):
         print(f"\nReview {i}/{total}:")
         print(f"Text: {text}")
-        
+
         result = await sentiment_agent.run(text)
         output = result.output
-        
-        print(f"\nClassification:")
+
+        print("\nClassification:")
         print(f"  Sentiment: {output.sentiment}")
         print(f"  Reasoning: {output.reasoning}")
         print(f"  Expected: {expected}")
-        
+
         if output.sentiment == expected:
             correct += 1
             print("  Status: Correct")
         else:
             print("  Status: Incorrect")
-        
+
         print("-" * 70)
-    
+
     accuracy = (correct / total) * 100
     print(f"\nResults: {correct}/{total} correct ({accuracy:.1f}% accuracy)")
 
 
 if __name__ == "__main__":
     import asyncio
+
     asyncio.run(main())
