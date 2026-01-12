@@ -1,0 +1,51 @@
+[project]
+name = "pydantic-ai-classification-demo"
+license = {text = "MIT"}
+version = "0.1.0"
+description = "Demo Applications Using PydanticAI"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["pydantic-ai>=0.0.14", "openai>=1.0.0", "python-dotenv>=1.0.0"]
+
+[dependency-groups]
+dev = ["pre-commit>=4.0.0", "ruff>=0.14.11", "ty>=0.0.10"]
+
+# Ruff configuration
+[tool.ruff]
+line-length = 135
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C",   # flake8-comprehensions
+    "UP",  # pyupgrade (modern Python syntax)
+    "SIM", # flake8-simplify
+    "RUF", # Ruff-specific rules
+    "N",   # pep8-naming
+    "YTT", # flake8-2020
+    "S",   # flake8-bandit
+    "A",   # flake8-builtins
+]
+
+[tool.ruff.lint.isort]
+known-first-party = [""]  # replace with your project name
+combine-as-imports = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"
+docstring-code-format = true
+
+[tool.ty.rules]
+unresolved-import = "ignore"
+possibly-missing-attribute = "ignore"
+
+[project.urls]
+License = "https://opensource.org/license/mit/"

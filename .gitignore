@@ -1,5 +1,45 @@
-.venv
-__pycache__
+# Environment variables
 .env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# uv
+.uv/
+uv.lock
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution
+dist/
+build/
+*.egg-info/
+
+# Custom
 *.db
 .ruff_cache
