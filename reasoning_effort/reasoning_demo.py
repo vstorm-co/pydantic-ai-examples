@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent
-from pydantic_ai.models.openai import OpenAIResponsesModelSettings
+from pydantic_ai.models.openai import OpenAIResponsesModelSettings, ReasoningEffort
 
 load_dotenv()
 
@@ -22,7 +22,7 @@ async def test_reasoning_effort():
 
     print(f"Problem: {problem.strip()}\n")
 
-    efforts = ["low", "medium", "high"]
+    efforts: list[ReasoningEffort] = ["low", "medium", "high"]
 
     for effort in efforts:
         agent: Agent[None, Solution] = Agent(
