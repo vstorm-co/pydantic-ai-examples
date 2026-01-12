@@ -12,7 +12,7 @@ class StoryOpening(BaseModel):
 
 async def test_temperature_creative_writing():
     """Demonstrate how temperature affects creative writing."""
-    prompt = "Write few opening paragraphs of a mystery novel set in a small coastal town."
+    prompt = "Write a few opening paragraphs of a mystery novel set in a small coastal town."
     print("Temperature in Creative Writing\n")
     print("=" * 70)
     print(f"Prompt: {prompt}\n")
