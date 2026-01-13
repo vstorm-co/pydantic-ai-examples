@@ -58,6 +58,19 @@ Runtime-adaptable classification that handles any number of classes dynamically.
 
 [View Example →](dynamic_classification/)
 
+### 6. Bielik Examples with Local Models
+
+**Location**: `bielik_example/`
+
+Learn to use **Bielik**, a Polish language LLM, with PydanticAI running locally via Ollama.
+
+- **Basic Inference**: Simple agent setup and synchronous requests
+- **Tool Calling**: Custom tools, multi-turn conversations, async operations
+- Local model serving without cloud API dependencies
+- Perfect for understanding agent architecture with a real model
+
+[View Example →](bielik_example/)
+
 ## Quick Start
 
 ### Setup
@@ -92,6 +105,11 @@ uv run sentiment_classifier.py
 # Dynamic classifier
 cd dynamic_classification
 uv run dynamic_classifier.py
+
+# Bielik local model examples
+cd bielik_example
+uv run python bielik_example/bielik_basic_inference.py
+uv run python bielik_example/bielik_basic_tools.py
 ```
 
 ## Project Structure
@@ -112,6 +130,12 @@ uv run dynamic_classifier.py
 ├── dynamic_classification/
 │   ├── dynamic_classifier.py
 │   └── README.md
+├── bielik_example/
+│   ├── bielik_basic_inference.py
+│   ├── bielik_basic_tools.py
+│   ├── Modelfile
+│   ├── README.md
+│   └── (optional) .env
 ├── pyproject.toml
 └── README.md
 ```
