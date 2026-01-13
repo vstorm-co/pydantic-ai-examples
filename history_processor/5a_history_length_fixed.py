@@ -1,10 +1,13 @@
-"""Example 5a: Fixed Message Count History Management
+"""Example 5a: Fixed Message Count History Management w/o tool calls
 
 Demonstrates simple history truncation strategies:
 - Keep only the last N messages
 - Basic approach for preventing history bloat
 - Useful for simple use cases with small context windows
 - Trade-off: May lose important context
+
+Be aware that this approach is valid only if there are not tools involved
+into our LLM calls. This is shown in the example 5c.
 
 This example shows a straightforward fixed-window approach.
 """
