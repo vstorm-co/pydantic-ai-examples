@@ -10,8 +10,6 @@ Demonstrates production-ready conversation persistence:
 This example shows how to build durable conversation storage systems.
 """
 
-from typing import List
-
 from dotenv import load_dotenv
 from icecream import ic
 from loguru import logger as log
@@ -24,15 +22,8 @@ load_dotenv()
 
 
 # --- Database Setup ---
-engine = create_engine(
-    "sqlite:///mydb.db",
-    connect_args={"autocommit": False}
-)
-SessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=engine
-)
+engine = create_engine("sqlite:///mydb.db", connect_args={"autocommit": False})
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 db = SessionLocal()
 
@@ -59,10 +50,7 @@ class ConversationRecord(Base):
 Base.metadata.create_all(bind=engine)
 
 
-def prepare_data_for_db(
-    prompt: str,
-    result: AgentRunResult
-) -> ConversationRecord:
+def prepare_data_for_db(prompt: str, result: AgentRunResult) -> ConversationRecord:
     """Convert agent result to database record.
 
     Args:
@@ -73,10 +61,7 @@ def prepare_data_for_db(
         ConversationRecord ready for database insertion
     """
     return ConversationRecord(
-        question=prompt,
-        answer=result.output,
-        model_used=result.all_messages()[-1].model_name,
-        usage=result.usage().__dict__
+        question=prompt, answer=result.output, model_used=result.all_messages()[-1].model_name, usage=result.usage().__dict__
     )
 
 
@@ -91,7 +76,7 @@ def add_message_to_db(record: ConversationRecord) -> None:
     log.info(f"Conversation saved to database with ID: {record.id}")
 
 
-def get_all_conversations() -> List[ConversationRecord]:
+def get_all_conversations() -> list[ConversationRecord]:
     """Retrieve all conversations from database.
 
     Returns:
@@ -110,21 +95,14 @@ def get_conversation_by_id(record_id: int) -> ConversationRecord | None:
     Returns:
         ConversationRecord if found, None otherwise
     """
-    return db.query(ConversationRecord).filter(
-        ConversationRecord.id == record_id
-    ).first()
+    return db.query(ConversationRecord).filter(ConversationRecord.id == record_id).first()
 
 
 def main() -> None:
     """Run database persistence example."""
     # Initialize agent
     log.info("=== Initializing Agent ===")
-    agent = Agent(
-        "openai:gpt-4o",
-        system_prompt=(
-            "You are a helpful assistant. Respond concisely and clearly."
-        )
-    )
+    agent = Agent("openai:gpt-4o", system_prompt=("You are a helpful assistant. Respond concisely and clearly."))
 
     # Run conversation and save to database
     log.info("\n=== Running Conversation ===")
@@ -149,7 +127,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    
-    
-    
-

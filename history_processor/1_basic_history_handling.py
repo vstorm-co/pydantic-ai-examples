@@ -19,10 +19,7 @@ load_dotenv()
 def main() -> None:
     """Run basic history inspection example."""
     # Create a basic agent
-    agent = Agent(
-        model="openai:gpt-4o",
-        system_prompt="Be a helpful assistant"
-    )
+    agent = Agent(model="openai:gpt-4o", system_prompt="Be a helpful assistant")
 
     # Run a single inference
     prompt = "Tell me a funny joke. Respond in plain text."

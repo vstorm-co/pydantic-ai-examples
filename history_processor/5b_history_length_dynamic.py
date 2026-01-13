@@ -12,12 +12,18 @@ This example shows professional patterns for managing context windows.
 import json
 from dataclasses import dataclass
 
+import tiktoken
 from dotenv import load_dotenv
 from loguru import logger as log
 from pydantic_ai import Agent, ModelMessage, RunContext
 from pydantic_ai.messages import ModelMessagesTypeAdapter
 
 load_dotenv()
+
+# `tiktoken` is used for OpenAI models, therefore if you're going to
+# use different model provided, this bit will need to be changed
+# to different tokenizer that corresponding to model used
+tokenizer = tiktoken.encoding_for_model("gpt-4o")
 
 
 @dataclass
@@ -42,16 +48,21 @@ def estimate_tokens(messages: list[ModelMessage]) -> int:
     count = 0
     for message in messages:
         for msg in message.parts:
-            count += len(msg.content) // 4
+            count += len(tokenizer.encode(str(msg.content)))
 
     return count
 
 
-def context_guard(
-    ctx: RunContext[MemoryState],
-    messages: list[ModelMessage],
-    token_threshold: int = 100
-) -> list[ModelMessage]:
+# `context_guard()` below is an exemplary filter that allows to trim the
+# number of messages persisting based on current token usage. For the sake
+# of this example, threshold is set low for the logic to trigger. Usually,
+# this value is much bigger and corresponds to used model's context
+# window size. To fully utilize model processing capabilities it the best to
+# set this value close to context size. For `gpt-4o` model this value is
+# equal to 128_000 tokens
+
+
+def context_guard(ctx: RunContext[MemoryState], messages: list[ModelMessage], token_threshold: int = 100) -> list[ModelMessage]:
     """Guard context size based on token usage.
 
     Trims history if token threshold exceeded.
@@ -96,10 +107,7 @@ def main() -> None:
 
     # First turn
     log.info("\n=== Turn 1 ===")
-    result_2a = agent_2.run_sync(
-        "Tell me who you are",
-        deps=state
-    )
+    result_2a = agent_2.run_sync("Tell me who you are", deps=state)
     log.info(f"Answer: {result_2a.output}")
     state.token_count += estimate_tokens(result_2a.all_messages())
     log.info(f"Tokens after turn 1: {state.token_count}")
@@ -109,19 +117,15 @@ def main() -> None:
     result_2b = agent_2.run_sync(
         "What are the most exceptional skills you posess? List at least 4 of them.",
         message_history=result_2a.all_messages(),
-        deps=state
+        deps=state,
     )
     log.info(f"Answer: {result_2b.output}")
     state.token_count += estimate_tokens(result_2a.all_messages())
     log.info(f"Tokens after turn 2: {state.token_count}")
-    
+
     # Third turn
     log.info("\n=== Turn 3 ===")
-    result_2c = agent_2.run_sync(
-        "What were we talking about??",
-        message_history=result_2b.all_messages(),
-        deps=state
-    )
+    result_2c = agent_2.run_sync("What were we talking about??", message_history=result_2b.all_messages(), deps=state)
     log.info(f"Answer: {result_2c.output}")
 
 

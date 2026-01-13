@@ -21,10 +21,7 @@ load_dotenv()
 def main() -> None:
     """Run multi-turn conversation with persistence example."""
     # Create agent
-    agent = Agent(
-        model="openai:gpt-4o",
-        system_prompt="Be a helpful assistant"
-    )
+    agent = Agent(model="openai:gpt-4o", system_prompt="Be a helpful assistant")
 
     # Turn 1: Get initial motto
     log.info("\n=== Turn 1 ===")
@@ -33,18 +30,12 @@ def main() -> None:
 
     # Turn 2: Explain the choice
     log.info("\n=== Turn 2 ===")
-    result_2 = agent.run_sync(
-        "Why did you choose this one? Please explain it a bit more.",
-        message_history=result_1.all_messages()
-    )
+    result_2 = agent.run_sync("Why did you choose this one? Please explain it a bit more.", message_history=result_1.all_messages())
     log.info(f"Answer: {result_2.output}")
 
     # Turn 3: Request another motto
     log.info("\n=== Turn 3 ===")
-    result_3 = agent.run_sync(
-        "Wow, thanks a lot! How about another one for my friend?",
-        message_history=result_2.all_messages()
-    )
+    result_3 = agent.run_sync("Wow, thanks a lot! How about another one for my friend?", message_history=result_2.all_messages())
     log.info(f"Answer: {result_3.output}")
 
     # Turn 4: Summarize conversation
@@ -53,10 +44,7 @@ def main() -> None:
         "Please summarize the whole conversation until this message. "
         "Point out key topics and provide a timeline of events from this conversation."
     )
-    result_4 = agent.run_sync(
-        summary_prompt,
-        message_history=result_3.all_messages()
-    )
+    result_4 = agent.run_sync(summary_prompt, message_history=result_3.all_messages())
     log.info(f"Summary: {result_4.output}")
 
     # Inspect full history
