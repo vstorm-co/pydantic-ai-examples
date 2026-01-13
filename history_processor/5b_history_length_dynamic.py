@@ -116,7 +116,7 @@ def main() -> None:
     # Second turn
     log.info("\n=== Turn 2 ===")
     result_2b = agent_2.run_sync(
-        "What are the most exceptional skills you posess? List at least 4 of them.",
+        "What are the most exceptional skills you possess? List at least 4 of them.",
         message_history=result_2a.all_messages(),
         deps=state,
     )
