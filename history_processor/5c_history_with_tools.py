@@ -1,3 +1,18 @@
+"""Example 5c: History Trimming with Tool Calls
+
+Demonstrates history-processing strategies that preserve tool-call / tool-response integrity.
+
+- `keep_last_messages`: simple N-message truncation
+- `keep_last_messages_with_tools`: truncation that attempts to keep tool call/response pairs
+
+This example attaches a simple tool to an `Agent` and demonstrates multi-turns
+with message history. It highlights pitfalls when history slicing breaks
+tool-call completeness.
+
+Usage:
+    uv run python 5c_history_with_tools.py
+"""
+
 import secrets
 from collections.abc import Callable
 
@@ -26,7 +41,10 @@ def keep_last_messages(messages: list[ModelMessage], num_messages: int = 3) -> l
 
 
 def keep_last_messages_with_tools(messages: list[ModelMessage], num_messages: int = 3) -> list[ModelMessage]:
-    """Keep only the last N messages from history including tool calls.
+    """Keep only the last N messages from history, preserving tool-call/response pairs.
+
+    Unlike `keep_last_messages`, this processor carefully preserves tool-call and
+    tool-response pairs to avoid breaking the agent's tool execution flow.
 
     Args:
         messages: Full conversation history with tool calls
@@ -44,7 +62,8 @@ def keep_last_messages_with_tools(messages: list[ModelMessage], num_messages: in
 
     start_index = -num_messages
 
-    # Check tool sequence integrity
+    # Ensure we don't split a tool-call/response pair by checking if the boundary
+    # falls in the middle of a tool interaction. If so, move the start index back.
     first_msg = messages[start_index]
 
     if isinstance(first_msg, ModelRequest) and any(isinstance(part, ToolReturnPart) for part in first_msg.parts):
@@ -54,9 +73,9 @@ def keep_last_messages_with_tools(messages: list[ModelMessage], num_messages: in
     return messages[max(-len(messages), start_index) :]
 
 
-def run_conversation_with_history_processor(history_processor: Callable) -> None:
-    log.info("\n=== Agent with Fixed Message Limit with tools ===")
-    log.info(f"\n=== Used history processor: {getattr(history_processor, '__name__', 'unknown_processor')} ===")
+def run_conversation_with_history_processor(history_processor: Callable[..., list[ModelMessage]]) -> None:
+    processor_name = getattr(history_processor, "__name__", "unknown_processor")
+    log.info(f"\n=== Running with history processor: {processor_name} ===")
 
     # Create agent with history processor
     agent = Agent("openai:gpt-4o", system_prompt="You are a helpful and playful assistant", history_processors=[history_processor])
@@ -64,28 +83,30 @@ def run_conversation_with_history_processor(history_processor: Callable) -> None
     # Add basic tool
     @agent.tool
     async def throw_dice(ctx: RunContext[None]) -> int:
-        "Throws a dice to get a random number between 1 and 6"
+        "Roll a die and return a random number between 1 and 6"
         return secrets.choice([1, 2, 3, 4, 5, 6])
 
     try:
         result_1 = agent.run_sync("Please provide a random number")
         ic(result_1.output)
-        ic(result_1.all_messages())
 
         result_2 = agent.run_sync("Okay, let's do this one more time!", message_history=result_1.all_messages())
         ic(result_2.output)
 
-        # Iterate over history
-        for idx, msg in enumerate(result_2.all_messages()):
-            log.info(f"\nMessage no {idx}\nMessage content: {msg.parts[0].content if hasattr(msg.parts[0], 'content') else msg.parts}")
+        # Display full conversation history
+        log.info(f"\nTotal messages in history: {len(result_2.all_messages())}")
+        for idx, msg in enumerate(result_2.all_messages(), start=1):
+            # Extract readable message content; parts may vary in type
+            content = getattr(msg.parts[0], "content", str(msg.parts)) if msg.parts else "(no content)"
+            log.info(f"Message #{idx}: {content}")
 
     except Exception as e:
-        log.info(f"Error: {e}")
+        log.error(f"Agent failed: {e}")
         log.warning(
-            "\nThis failed as expected! ⚠️\n"
-            "History must include complete tool calls being ToolCallPart and "
-            "ToolResponsePart. If some dangling ones will remain, as in this case "
-            "you'll end up with and error."
+            "\nThis failure demonstrates a key lesson! ⚠️\n"
+            "When history slicing splits a tool-call / tool-response pair (e.g., cuts "
+            "the response but keeps the call), the agent cannot continue and raises an error.\n"
+            "This is why `keep_last_messages_with_tools` exists: to avoid this pitfall."
         )
 
 
