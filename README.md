@@ -104,7 +104,7 @@ Learn how to manage conversation history in AI agents.
 - Multi-turn conversations with context
 - History persistence (JSON and Database)
 - Advanced filtering and transformation
-- Context window management strategies
+- Context window management strategies (fixed, dynamic, and tool-aware)
 - Production-ready database archival
 
 [View Example →](history_processor/)
@@ -162,6 +162,7 @@ uv run python 3_history_usage.py
 uv run python 4_history_filtering.py
 uv run python 5a_history_length_fixed.py
 uv run python 5b_history_length_dynamic.py
+uv run python 5c_history_with_tools.py
 uv run python 6_persistent_history.py
 ```
 
@@ -190,6 +191,7 @@ uv run python 6_persistent_history.py
 │   ├── 4_history_filtering.py
 │   ├── 5a_history_length_fixed.py
 │   ├── 5b_history_length_dynamic.py
+│   ├── 5c_history_with_tools.py
 │   ├── 6_persistent_history.py
 │   ├── README.md
 │   ├── .env.example

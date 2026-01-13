@@ -94,6 +94,19 @@ uv run python 5a_history_length_fixed.py
 uv run python 5b_history_length_dynamic.py
 ```
 
+#### 5c. **History Trimming with Tool Calls** (`5c_history_with_tools.py`)
+
+**Concepts:** Tool-call/response pair integrity, safe history slicing, agent tool integration
+
+- Preserve tool-call and tool-response pairs during history trimming
+- Understand why splitting tool pairs breaks agent execution
+- Compare naive truncation vs. tool-aware truncation
+- Practical patterns for agents that use tools
+
+```bash
+uv run python 5c_history_with_tools.py
+```
+
 ---
 
 ### 6. **Persistent History with Database** (`6_persistent_history.py`)
@@ -162,6 +175,7 @@ agent = Agent("openai:gpt-4o", history_processors=[my_processor])
    uv run python 4_history_filtering.py
    uv run python 5a_history_length_fixed.py
    uv run python 5b_history_length_dynamic.py
+   uv run python 5c_history_with_tools.py
    uv run python 6_persistent_history.py
    ```
 

@@ -58,9 +58,10 @@ def main() -> None:
     # Persist history for use in example 4
     log.info("\n=== Saving to File ===")
     history_json = result_4.all_messages_json()
-    with open("output_3.json", "wb") as f:
+    save_path = "./output_3.json"
+    with open(save_path, "wb") as f:
         f.write(history_json)
-    log.info("History saved to output_3.json")
+    log.info(f"History saved to {save_path}")
 
 
 if __name__ == "__main__":

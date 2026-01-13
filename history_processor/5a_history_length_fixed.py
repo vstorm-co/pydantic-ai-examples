@@ -41,7 +41,8 @@ def main() -> None:
     """Run fixed message count history example."""
     # Load conversation history from previous example
     log.info("=== Loading Persisted History ===")
-    with open("output_3.json", "rb") as f:
+    save_path = "./output_3.json"
+    with open(save_path, "rb") as f:
         conv = json.load(f)
     log.info("Historical conversation loaded")
 
