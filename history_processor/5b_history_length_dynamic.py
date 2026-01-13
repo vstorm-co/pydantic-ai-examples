@@ -57,7 +57,7 @@ def estimate_tokens(messages: list[ModelMessage]) -> int:
 # number of messages persisting based on current token usage. For the sake
 # of this example, threshold is set low for the logic to trigger. Usually,
 # this value is much bigger and corresponds to used model's context
-# window size. To fully utilize model processing capabilities it the best to
+# window size. To fully utilize model processing capabilities it is best to
 # set this value close to context size. For `gpt-4o` model this value is
 # equal to 128_000 tokens
 
