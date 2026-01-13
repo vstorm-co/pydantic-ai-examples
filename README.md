@@ -108,8 +108,8 @@ uv run dynamic_classifier.py
 
 # Bielik local model examples
 cd bielik_example
-uv run python bielik_example/bielik_basic_inference.py
-uv run python bielik_example/bielik_basic_tools.py
+uv run python bielik_basic_inference.py
+uv run python bielik_basic_tools.py
 ```
 
 ## Project Structure

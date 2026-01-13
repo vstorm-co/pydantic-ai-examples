@@ -39,7 +39,7 @@ ollama_model = OpenAIChatModel(
 agent = Agent(ollama_model, system_prompt="Jesteś asystentem AI odpowiadającym krótko i zwięźle")
 
 
-def main(agent: Agent = agent) -> None:
+async def main(agent: Agent = agent) -> None:
     """
     Main function that demonstrates basic inference.
 
@@ -55,7 +55,7 @@ def main(agent: Agent = agent) -> None:
     # Run a synchronous request to the agent
     # run_sync() blocks until the model completes its response
     # Unlike run() which is asynchronous, this is simpler for basic use cases
-    result = agent.run_sync("Cześć, kim jesteś?")  # "Hello, who are you?" in Polish
+    result = await agent.run("Cześć, kim jesteś?")  # "Hello, who are you?" in Polish
 
     # Log the model's response
     log.info(f"Agent response: {result.output}")
@@ -67,4 +67,6 @@ def main(agent: Agent = agent) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import asyncio
+
+    asyncio.run(main())

@@ -10,6 +10,8 @@ dependencies = [
     "openai>=1.0.0",
     "python-dotenv>=1.0.0",
     "httpx>=0.28.1",
+    "icecream>=2.1.8",
+    "loguru>=0.7.3",
 ]
 
 [dependency-groups]

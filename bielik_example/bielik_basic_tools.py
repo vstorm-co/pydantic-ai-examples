@@ -39,6 +39,10 @@ load_dotenv(override=True)
 # API Configuration
 # =================
 WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
+if not WEATHER_API_KEY:
+    raise RuntimeError(
+        "WEATHER_API_KEY environment variable is not set. Please define it (e.g., in your .env file) so the weather tool can work."
+    )
 
 # Ollama Model Configuration
 # ===========================
@@ -107,7 +111,7 @@ async def check_weather(ctx: RunContext[None], city: str) -> Any:
         str: An error message if the API call fails
     """
     # WeatherAPI endpoint for current weather
-    url = "http://api.weatherapi.com/v1/current.json"
+    url = "https://api.weatherapi.com/v1/current.json"
 
     # Query parameters for the API request
     params = {
@@ -141,7 +145,7 @@ async def check_weather(ctx: RunContext[None], city: str) -> Any:
             return f"Error: Could not find weather for {city}. Status: {response.status_code}"
 
 
-def main(agent: Agent = agent) -> None:
+async def main(agent: Agent = agent) -> None:
     """
     Main function demonstrating multi-turn conversation with tool calling.
 
@@ -161,7 +165,7 @@ def main(agent: Agent = agent) -> None:
     # ====================
     # This initial message establishes context and allows the model to introduce itself
     prompt_1 = "Cześć, kim jesteś?"  # "Hello, who are you?" in Polish
-    result_1 = agent.run_sync(prompt_1)
+    result_1 = await agent.run(prompt_1)
     log.info(prompt_1)
     log.info(f"Response: {result_1.output}")
 
@@ -170,7 +174,7 @@ def main(agent: Agent = agent) -> None:
     # Pass the message history from the previous turn to maintain context
     # The agent will understand it's continuing a conversation and can use tools
     prompt_2 = "Rzuć kostką i podaj wynik!"  # "Roll a dice and tell me the result!" in Polish
-    result_2 = agent.run_sync(prompt_2, message_history=result_1.all_messages())
+    result_2 = await agent.run(prompt_2, message_history=result_1.all_messages())
     log.info(prompt_2)
     log.info(f"Response: {result_2.output}")
 
@@ -183,7 +187,7 @@ def main(agent: Agent = agent) -> None:
     # =========================================
     # Continue the conversation with another tool-requiring request
     prompt_3 = "Sprawdź pogodę w Warszawie, proszę Cię!"  # "Check the weather in Warsaw, please!" in Polish
-    result_3 = agent.run_sync(prompt_3, message_history=result_2.all_messages())
+    result_3 = await agent.run(prompt_3, message_history=result_2.all_messages())
     log.info(prompt_3)
     log.info(f"Response: {result_3.output}")
 
@@ -194,4 +198,6 @@ def main(agent: Agent = agent) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import asyncio
+
+    asyncio.run(main())

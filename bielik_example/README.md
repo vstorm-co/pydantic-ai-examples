@@ -71,8 +71,7 @@ ollama ps
 From this project's root directory:
 
 ```bash
-pip install -r requirements.txt
-# or if using uv:
+# using uv:
 uv sync
 ```
 
@@ -104,7 +103,10 @@ This is the simplest example showing:
 **Run**:
 
 ```bash
-# with uv:
+# move into the dir
+cd bielik_example
+
+# run with uv
 uv run python bielik_example/bielik_basic_inference.py
 ```
 
@@ -128,16 +130,18 @@ This advanced example demonstrates:
 **Run**:
 
 ```bash
-# with uv:
+# move into the dir (if not already)
+cd bielik_example
+
+# run with uv
 uv run python bielik_example/bielik_basic_tools.py
 ```
-
 
 ## Key Concepts Explained
 
 ### Agent
 
-A `Agent` is the main interface for interacting with an LLM. It:
+An `Agent` is the main interface for interacting with an LLM. It:
 
 - Wraps the language model
 - Manages conversation history
