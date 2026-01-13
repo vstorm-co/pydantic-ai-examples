@@ -9,6 +9,7 @@ dependencies = [
     "pydantic-ai>=0.0.14",
     "openai>=1.0.0",
     "python-dotenv>=1.0.0",
+    "httpx>=0.28.1",
 ]
 
 [dependency-groups]

@@ -1,37 +1,49 @@
 FROM SpeakLeash/bielik-11b-v3.0-instruct:Q8_0
 
-TEMPLATE """{{- /* SYSTEM + TOOLS INJECTION */ -}}
-{{- if or .System .Tools -}}
-<|im_start|>system
-{{- if .System }}
-{{ .System }}
-{{- end }}
+TEMPLATE """<s>{{- if .System }}<|start_header_id|>system<|end_header_id|>
 
-{{- if .Tools }}
-You are provided with tool signatures that you can use to assist with the user's query.
-You do not have to use a tool if you can respond adequately without it.
-Do not make assumptions about tool arguments. If required parameters are missing, ask a clarification question.
+{{ .System }}<|eot_id|>{{- end }}
+{{- if .Tools }}<|start_header_id|>system<|end_header_id|>
 
-If you decide to invoke a tool, you MUST respond with ONLY valid JSON in the following format:
-{"name":"<tool-name>","arguments":{...}}
-
-Below is a list of tools you can invoke (JSON):
+You have access to the following tools:
 {{ .Tools }}
-{{- end }}
-<|im_end|>
-{{- end }}
 
-{{- /* MESSAGES */ -}}
-{{- range $i, $_ := .Messages }}
-<|im_start|>{{ .Role }}
-{{ .Content }}<|im_end|>
+When you need to call a tool, you MUST respond with ONLY this exact format:
+<tool_call>
+{"name": "function_name", "arguments": {"param": "value"}}
+</tool_call>
+
+Do not add any other text when calling a tool. After receiving tool results, provide your final answer.<|eot_id|>{{- end }}
+{{- range .Messages }}
+{{- if eq .Role "user" }}<|start_header_id|>user<|end_header_id|>
+
+{{ .Content }}<|eot_id|>
+{{- else if eq .Role "assistant" }}<|start_header_id|>assistant<|end_header_id|>
+
+{{- if .ToolCalls }}
+<tool_call>
+{{- range .ToolCalls }}
+{"name": "{{ .Function.Name }}", "arguments": {{ .Function.Arguments }}}
 {{- end }}
+</tool_call>
+{{- else }}
+{{ .Content }}
+{{- end }}<|eot_id|>
+{{- else if eq .Role "tool" }}<|start_header_id|>tool<|end_header_id|>
 
-{{- /* GENERATION PROMPT */ -}}
-<|im_start|>assistant"""
+<tool_response>
+{{ .Content }}
+</tool_response><|eot_id|>
+{{- end }}
+{{- end }}<|start_header_id|>assistant<|end_header_id|>
 
+"""
+
+PARAMETER stop "<|eot_id|>"
 PARAMETER stop "<|start_header_id|>"
 PARAMETER stop "<|end_header_id|>"
-PARAMETER stop "<|eot_id|>"
+PARAMETER stop "</tool_call>"
+
 
 PARAMETER temperature 0.1
+PARAMETER num_ctx 8192
