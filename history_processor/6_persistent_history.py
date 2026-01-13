@@ -22,7 +22,7 @@ load_dotenv()
 
 
 # --- Database Setup ---
-engine = create_engine("sqlite:///mydb.db", connect_args={"autocommit": False})
+engine = create_engine("sqlite:///mydb.db")
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 db = SessionLocal()
