@@ -1,0 +1,216 @@
+[
+  {
+    "parts": [
+      {
+        "content": "Be a helpful assistant",
+        "timestamp": "2026-01-13T11:45:41.245167Z",
+        "dynamic_ref": null,
+        "part_kind": "system-prompt"
+      },
+      {
+        "content": "Provide me with a good motto for today!",
+        "timestamp": "2026-01-13T11:45:41.245565Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-01-13T11:45:41.245696Z",
+    "instructions": null,
+    "kind": "request",
+    "run_id": "293ab488-573a-4ef4-9e01-f3770c6b85fc",
+    "metadata": null
+  },
+  {
+    "parts": [
+      {
+        "content": "\"Embrace every challenge as an opportunity to grow.\"",
+        "id": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 24,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 11,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "model_name": "gpt-4o-2024-08-06",
+    "timestamp": "2026-01-13T11:45:42.152866Z",
+    "kind": "response",
+    "provider_name": "openai",
+    "provider_url": "https://api.openai.com/v1/",
+    "provider_details": {
+      "finish_reason": "stop",
+      "timestamp": "2026-01-13T11:45:41Z"
+    },
+    "provider_response_id": "chatcmpl-CxX89Ahq1f5R2eW8Q1rb56L9tmVr4",
+    "finish_reason": "stop",
+    "run_id": "293ab488-573a-4ef4-9e01-f3770c6b85fc",
+    "metadata": null
+  },
+  {
+    "parts": [
+      {
+        "content": "Why did you choose this one? Please explain it a bit more.",
+        "timestamp": "2026-01-13T11:45:42.160392Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-01-13T11:45:42.160548Z",
+    "instructions": null,
+    "kind": "request",
+    "run_id": "2f750e3b-f651-43d4-b6f4-6a941cc5b232",
+    "metadata": null
+  },
+  {
+    "parts": [
+      {
+        "content": "I chose this motto because it encourages a proactive and positive mindset. Life often presents us with challenges, and our response to these challenges can define our personal and professional growth. By viewing difficulties as opportunities rather than obstacles, we empower ourselves to learn, adapt, and improve. This perspective fosters resilience and optimism, helping us navigate the ups and downs of daily life more effectively. It's a reminder that growth often comes from stepping outside of our comfort zones and that each challenge is a stepping stone towards becoming a better version of ourselves.",
+        "id": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 57,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 104,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "model_name": "gpt-4o-2024-08-06",
+    "timestamp": "2026-01-13T11:45:45.463059Z",
+    "kind": "response",
+    "provider_name": "openai",
+    "provider_url": "https://api.openai.com/v1/",
+    "provider_details": {
+      "finish_reason": "stop",
+      "timestamp": "2026-01-13T11:45:42Z"
+    },
+    "provider_response_id": "chatcmpl-CxX8A4nA64cEjFydYVKPEatlCJ8Da",
+    "finish_reason": "stop",
+    "run_id": "2f750e3b-f651-43d4-b6f4-6a941cc5b232",
+    "metadata": null
+  },
+  {
+    "parts": [
+      {
+        "content": "Wow, thanks a lot! How about another one for my friend?",
+        "timestamp": "2026-01-13T11:45:45.465348Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-01-13T11:45:45.465530Z",
+    "instructions": null,
+    "kind": "request",
+    "run_id": "15bd4a65-19e6-4fbf-a425-3fefde847866",
+    "metadata": null
+  },
+  {
+    "parts": [
+      {
+        "content": "\"Be the reason someone smiles today.\"",
+        "id": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 183,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 8,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "model_name": "gpt-4o-2024-08-06",
+    "timestamp": "2026-01-13T11:45:46.360274Z",
+    "kind": "response",
+    "provider_name": "openai",
+    "provider_url": "https://api.openai.com/v1/",
+    "provider_details": {
+      "finish_reason": "stop",
+      "timestamp": "2026-01-13T11:45:45Z"
+    },
+    "provider_response_id": "chatcmpl-CxX8DuJydbStyhQnclOEeXZdPVHGm",
+    "finish_reason": "stop",
+    "run_id": "15bd4a65-19e6-4fbf-a425-3fefde847866",
+    "metadata": null
+  },
+  {
+    "parts": [
+      {
+        "content": "Please summarize the whole conversation until this message. Point out key topics and provide a timeline of events from this conversation.",
+        "timestamp": "2026-01-13T11:45:46.364190Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-01-13T11:45:46.364316Z",
+    "instructions": null,
+    "kind": "request",
+    "run_id": "e5cd5bfe-a5dc-4fdb-a04d-c085f37602ac",
+    "metadata": null
+  },
+  {
+    "parts": [
+      {
+        "content": "Sure! Here's a summary of our conversation with a timeline of events:\n\n1. **Request for Motto**: You asked for a good motto for today.\n   \n2. **Motto Provided**: I suggested the motto \"Embrace every challenge as an opportunity to grow.\"\n\n3. **Explanation**: You asked why I chose that motto, and I explained that it encourages a positive and proactive mindset by viewing challenges as opportunities for personal and professional growth.\n\n4. **Request for Another Motto**: You asked for a motto suitable for your friend.\n\n5. **Second Motto Provided**: I suggested \"Be the reason someone smiles today.\"\n\nThese key points highlight our discussion about finding and understanding positive mottos to inspire and uplift both yourself and others.",
+        "id": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 222,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 150,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "model_name": "gpt-4o-2024-08-06",
+    "timestamp": "2026-01-13T11:45:50.014196Z",
+    "kind": "response",
+    "provider_name": "openai",
+    "provider_url": "https://api.openai.com/v1/",
+    "provider_details": {
+      "finish_reason": "stop",
+      "timestamp": "2026-01-13T11:45:46Z"
+    },
+    "provider_response_id": "chatcmpl-CxX8EOMrwd8ZN3KJFB4ACWAHjWgYr",
+    "finish_reason": "stop",
+    "run_id": "e5cd5bfe-a5dc-4fdb-a04d-c085f37602ac",
+    "metadata": null
+  }
+]
