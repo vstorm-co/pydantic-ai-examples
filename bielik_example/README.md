@@ -35,7 +35,7 @@ Open a terminal and run:
 ollama pull SpeakLeash/bielik-11b-v3.0-instruct:Q8_0
 ```
 
-> **HINT**: You can try different versions of the model. However remember to change it's name also in the `Modelfile`.
+> **HINT**: You can try different versions of the model. However remember to change its name also in the `Modelfile`.
 If you'd like to try out even different models, head to [this address](https://ollama.com/search).
 
 ### 3. Create a custom version with provided Modelfile
