@@ -241,7 +241,7 @@ conversation = get_conversation_by_id(record.id)
 - `pydantic-ai` - Core framework
 - `loguru` - Logging
 - `python-dotenv` - Environment configuration
-- `sqlalchemy - Database ORM (for example 6)
+- `sqlalchemy` - Database ORM (for example 6)
 
 See `pyproject.toml` for full dependencies.
 
