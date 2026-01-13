@@ -60,8 +60,16 @@ def prepare_data_for_db(prompt: str, result: AgentRunResult) -> ConversationReco
     Returns:
         ConversationRecord ready for database insertion
     """
+    messages = result.all_messages() or []
+    last_message = messages[-1] if messages else None
+    model_used = getattr(last_message, "model_name", "") if last_message is not None else ""
+    usage_data = result.usage().__dict__
+
     return ConversationRecord(
-        question=prompt, answer=result.output, model_used=result.all_messages()[-1].model_name, usage=result.usage().__dict__
+        question=prompt,
+        answer=result.output,
+        model_used=model_used,
+        usage=usage_data,
     )
 
 
