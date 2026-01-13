@@ -1,0 +1,37 @@
+FROM SpeakLeash/bielik-11b-v3.0-instruct:Q8_0
+
+TEMPLATE """{{- /* SYSTEM + TOOLS INJECTION */ -}}
+{{- if or .System .Tools -}}
+<|im_start|>system
+{{- if .System }}
+{{ .System }}
+{{- end }}
+
+{{- if .Tools }}
+You are provided with tool signatures that you can use to assist with the user's query.
+You do not have to use a tool if you can respond adequately without it.
+Do not make assumptions about tool arguments. If required parameters are missing, ask a clarification question.
+
+If you decide to invoke a tool, you MUST respond with ONLY valid JSON in the following format:
+{"name":"<tool-name>","arguments":{...}}
+
+Below is a list of tools you can invoke (JSON):
+{{ .Tools }}
+{{- end }}
+<|im_end|>
+{{- end }}
+
+{{- /* MESSAGES */ -}}
+{{- range $i, $_ := .Messages }}
+<|im_start|>{{ .Role }}
+{{ .Content }}<|im_end|>
+{{- end }}
+
+{{- /* GENERATION PROMPT */ -}}
+<|im_start|>assistant"""
+
+PARAMETER stop "<|start_header_id|>"
+PARAMETER stop "<|end_header_id|>"
+PARAMETER stop "<|eot_id|>"
+
+PARAMETER temperature 0.1
