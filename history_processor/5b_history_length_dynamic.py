@@ -34,16 +34,16 @@ class MemoryState:
 
 
 def estimate_tokens(messages: list[ModelMessage]) -> int:
-    """Estimate token count in messages using simple heuristic.
+    """Estimate token count in messages using the configured tokenizer.
 
-    Divides character count by 4 as rough approximation.
-    For production, use proper tokenizer (e.g., tiktoken).
+    Uses the global `tokenizer` (tiktoken for the configured model) to
+    encode each message part and counts the resulting tokens.
 
     Args:
         messages: List of messages to estimate tokens for
 
     Returns:
-        Estimated token count
+        Estimated token count based on tokenizer output
     """
     count = 0
     for message in messages:
