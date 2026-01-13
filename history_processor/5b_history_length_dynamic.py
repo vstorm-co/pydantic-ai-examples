@@ -121,7 +121,7 @@ def main() -> None:
         deps=state,
     )
     log.info(f"Answer: {result_2b.output}")
-    state.token_count += estimate_tokens(result_2a.all_messages())
+    state.token_count += estimate_tokens(result_2b.all_messages())
     log.info(f"Tokens after turn 2: {state.token_count}")
 
     # Third turn
