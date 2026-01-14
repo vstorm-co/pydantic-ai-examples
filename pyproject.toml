@@ -13,6 +13,7 @@ dependencies = [
     "sqlalchemy>=2.0.45",
     "loguru>=0.7.3",
     "tiktoken>=0.12.0",
+    "pdf2image>=1.17.0",
 ]
 
 [dependency-groups]
