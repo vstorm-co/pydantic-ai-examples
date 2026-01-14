@@ -71,6 +71,21 @@ Learn to use **Bielik**, a Polish language LLM, with PydanticAI running locally 
 
 [View Example →](bielik_example/)
 
+### 7. History Processor
+
+**Location**: `history_processor/`
+
+Learn how to manage conversation history in AI agents.
+
+- Basic history handling and inspection
+- Multi-turn conversations with context
+- History persistence (JSON and Database)
+- Advanced filtering and transformation
+- Context window management strategies (fixed, dynamic, and tool-aware)
+- Production-ready database archival
+
+[View Example →](history_processor/)
+
 ## Quick Start
 
 ### Setup
@@ -107,71 +122,13 @@ cd dynamic_classification
 uv run dynamic_classifier.py
 
 # Bielik local model examples
+# REMEMBER TO PREPARE LOCAL MODEL FIRST
 cd bielik_example
 uv run python bielik_basic_inference.py
 uv run python bielik_basic_tools.py
-```
 
-### 6. History Processor
-
-**Location**: `history_processor/`
-
-Learn how to manage conversation history in AI agents.
-
-- Basic history handling and inspection
-- Multi-turn conversations with context
-- History persistence (JSON and Database)
-- Advanced filtering and transformation
-- Context window management strategies (fixed, dynamic, and tool-aware)
-- Production-ready database archival
-
-[View Example →](history_processor/)
-
-## Quick Start
-
-### Setup - General
-
-```bash
-# Install dependencies
-uv sync
-
-# Set API key
-echo "OPENAI_API_KEY=your-key" > .env
-```
-
-### Run Examples 1-5
-
-```bash
-# Direct model requests
-cd direct_model_request
-uv run direct_request_demo.py
-
-# Model parameters
-cd temperature
-uv run temperature_demo.py
-
-# Reasoning effort
-cd reasoning_effort
-uv run reasoning_demo.py
-
-# Basic sentiment classifier
-cd basic_sentiment
-uv run sentiment_classifier.py
-
-# Dynamic classifier
-cd dynamic_classification
-uv run dynamic_classifier.py
-```
-
-### Run Example 6 - History Processor
-
-```bash
+# History processor
 cd history_processor
-
-# Configure environment
-cp .env.example .env
-# Edit .env and add your OpenAI API key (i.e., with `nano`)
-nano .env
 
 # Run individual examples
 uv run python 1_basic_history_handling.py
@@ -219,7 +176,7 @@ uv run python 6_persistent_history.py
 │   ├── 6_persistent_history.py
 │   ├── README.md
 │   ├── .env.example
-│   └── pyproject.toml
+│   └── output_3.json
 ├── pyproject.toml
 └── README.md
 ```
