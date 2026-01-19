@@ -59,13 +59,13 @@ def main() -> None:
 
     # Example 1: Summarize only user messages
     log.info("\n=== Filtering: User Messages Only ===")
-    agent_user = Agent("openai:gpt-4o", history_processors=[user_message_filter])
+    agent_user = Agent("openai:gpt-5.1", history_processors=[user_message_filter])
     result_1 = agent_user.run_sync("Please summarize the whole chat history until now.", message_history=history)
     log.info(f"Summary (user messages only):\n{result_1.output}")
 
     # Example 2: Attempt to filter only model messages (will fail)
     log.info("\n=== Filtering: Model Messages Only ===")
-    agent_model = Agent("openai:gpt-4o", history_processors=[model_message_filter])
+    agent_model = Agent("openai:gpt-5.1", history_processors=[model_message_filter])
     try:
         result_2 = agent_model.run_sync("Please summarize the whole chat history until now.", message_history=history)
         log.info(f"Summary (model messages only):\n{result_2.output}")

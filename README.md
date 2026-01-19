@@ -19,7 +19,20 @@ uv sync
 echo "OPENAI_API_KEY=your-key-here" > .env
 ```
 
-**Note**: Most examples use OpenAI's GPT-4o. Ensure your API key has appropriate permissions and sufficient quota.
+**Note**: Most examples use OpenAI's GPT-5.1. Ensure your API key has appropriate permissions and sufficient quota.
+
+## Learning Path
+
+**Recommended order for learning PydanticAI**:
+
+1. **[Direct Model Requests](direct_model_request/)** - Understand basic LLM API calls
+2. **[Temperature](temperature/)** - Understand model parameters
+3. **[Reasoning Effort](reasoning_effort/)** - Uncover how the reasoning effort may change the model's output
+4. **[Basic Sentiment](basic_sentiment/)** - Learn structured outputs with Pydantic
+5. **[Dynamic Classification](dynamic_classification/)** - Runtime schema generation
+6. **[Bielik](bielik_example/)** - Local models and tools
+7. **[History Processor](history_processor/)** - Multi-turn conversations
+8. **[OCR Parsing](ocr_parsing_demo/)** - Complex real-world document processing
 
 ## Examples Overview
 
@@ -194,6 +207,36 @@ Most examples use PydanticAI's `Agent` class, which wraps an LLM with:
 - Output type schemas for structured responses
 - Async/await support for concurrent requests
 
+### Tools
+
+It's worth noticing that since those are examples, most of them are pretty basic. However, it's easy to add an a tool for given agent. Let's look at **[OCR Parsing](ocr_parsing/) code.
+
+Currently the Agent does all the work itself - classifies document, parses the output, does the OCR and so on for every document in the same way. But what if we'd like to have a different behavior based on the document type?
+
+```python
+from pydantic_ai import Agent, RunContext
+from my_schemas import OCRInvoiceOutput, ReportOcrOutput
+
+# The Agent acts as a router, deciding which tool to call
+# based on the document's visual or textual cues.
+agent = Agent(
+    'openai:gpt-5.1',
+    system_prompt="Analyze the document and use the appropriate tool for parsing."
+)
+
+@agent.tool
+async def parse_invoice(ctx: RunContext[MyDeps], data: bytes) -> OCRInvoiceOutput:
+    """Use this tool when the document is identified as an Invoice."""
+    # Your specialized OCR & validation logic here
+    return await ctx.deps.ocr_service.process(data, schema=OCRInvoiceOutput)
+
+@agent.tool
+async def parse_report(ctx: RunContext[MyDeps], data: bytes) -> ReportOcrOutput:
+    """Use this tool when the document is a multi-page Annual Report."""
+    # Custom logic for complex reports
+    return await ctx.deps.ocr_service.process(data, schema=ReportOcrOutput)
+```
+
 ### Structured Outputs
 
 Examples show how to enforce type safety using Pydantic `BaseModel`:
@@ -265,7 +308,6 @@ Bielik example shows alternative to cloud APIs:
 │   ├── 1_basic_ocr_demo.py
 │   ├── 2_ocr_with_structured_output.py
 │   ├── 3_ocr_validation.py
-│   ├── shared_fns.py
 │   ├── README.md
 │   ├── files/
 │   │   ├── samples/        # Sample PDF documents
@@ -274,18 +316,6 @@ Bielik example shows alternative to cloud APIs:
 ├── pyproject.toml
 └── README.md
 ```
-
-## Learning Path
-
-**Recommended order for learning PydanticAI**:
-
-1. **[Direct Model Requests](direct_model_request/)** - Understand basic LLM API calls
-2. **[Basic Sentiment](basic_sentiment/)** - Learn structured outputs with Pydantic
-3. **[Temperature](temperature/)** - Understand model parameters
-4. **[Dynamic Classification](dynamic_classification/)** - Runtime schema generation
-5. **[Bielik](bielik_example/)** - Local models and tools
-6. **[History Processor](history_processor/)** - Multi-turn conversations
-7. **[OCR Parsing](ocr_parsing_demo/)** - Complex real-world document processing
 
 ## Common Issues & Troubleshooting
 
@@ -309,7 +339,7 @@ Bielik example shows alternative to cloud APIs:
 
 - **poppler not found**: Install via your package manager (brew/apt/choco)
 - **PDF conversion fails**: Ensure PDF is valid and readable
-- **Rate limiting**: Reduce semaphore value in `shared_fns.py`
+- **Rate limiting**: Reduce semaphore value in `ocr_parsing/shared_fns.py`
 
 See individual example READMEs for specific setup requirements.
 

@@ -15,20 +15,6 @@ As a MacOS user you'll need to install additional package used by `pdf2image` pa
 brew install poppler
 ```
 
-## Quick start
-
-```bash
-# Move into examples directory
-cd ocr_parsing_demo
-
-# Run the scripts
-uv run 1_basic_ocr_demo.py
-uv run 2_ocr_with_structured_output.py
-
-# Before running 3rd example please investigate the code and uncomment necessary line
-uv run 3_ocr_validation.py
-```
-
 ### `1_basic_ocr_demo.py`
 
 This script demonstrates a basic flow that can be used for OCR purposes on various types of documents. The output is provided as a Markdown formatted content due to LLMs being especially great with Markdown formatting tasks.

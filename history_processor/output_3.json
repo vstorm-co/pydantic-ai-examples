@@ -43,7 +43,7 @@
         "rejected_prediction_tokens": 0
       }
     },
-    "model_name": "gpt-4o-2024-08-06",
+    "model_name": "gpt-5.1",
     "timestamp": "2026-01-13T11:45:42.152866Z",
     "kind": "response",
     "provider_name": "openai",
@@ -95,7 +95,7 @@
         "rejected_prediction_tokens": 0
       }
     },
-    "model_name": "gpt-4o-2024-08-06",
+    "model_name": "gpt-5.1",
     "timestamp": "2026-01-13T11:45:45.463059Z",
     "kind": "response",
     "provider_name": "openai",
@@ -147,7 +147,7 @@
         "rejected_prediction_tokens": 0
       }
     },
-    "model_name": "gpt-4o-2024-08-06",
+    "model_name": "gpt-5.1",
     "timestamp": "2026-01-13T11:45:46.360274Z",
     "kind": "response",
     "provider_name": "openai",
@@ -199,7 +199,7 @@
         "rejected_prediction_tokens": 0
       }
     },
-    "model_name": "gpt-4o-2024-08-06",
+    "model_name": "gpt-5.1",
     "timestamp": "2026-01-13T11:45:50.014196Z",
     "kind": "response",
     "provider_name": "openai",

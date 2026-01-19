@@ -35,7 +35,7 @@ class ConversationRecord(Base):
         id: Unique identifier for the record
         question: User prompt/question
         answer: Agent response
-        model_used: Model identifier (e.g., "gpt-4o")
+        model_used: Model identifier (e.g., "gpt-5.1")
         usage: Token usage metadata (input, output, total tokens)
     """
 
@@ -110,7 +110,7 @@ def main() -> None:
     """Run database persistence example."""
     # Initialize agent
     log.info("=== Initializing Agent ===")
-    agent = Agent("openai:gpt-4o", system_prompt=("You are a helpful assistant. Respond concisely and clearly."))
+    agent = Agent("openai:gpt-5.1", system_prompt=("You are a helpful assistant. Respond concisely and clearly."))
 
     # Run conversation and save to database
     log.info("\n=== Running Conversation ===")

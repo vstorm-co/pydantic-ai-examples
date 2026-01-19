@@ -23,7 +23,7 @@ load_dotenv()
 # `tiktoken` is used for OpenAI models, therefore if you're going to
 # use different model provided, this bit will need to be changed
 # to different tokenizer that corresponding to model used
-tokenizer = tiktoken.encoding_for_model("gpt-4o")
+tokenizer = tiktoken.encoding_for_model("gpt-5.1")
 
 
 @dataclass
@@ -58,7 +58,7 @@ def estimate_tokens(messages: list[ModelMessage]) -> int:
 # of this example, threshold is set low for the logic to trigger. Usually,
 # this value is much bigger and corresponds to used model's context
 # window size. To fully utilize model processing capabilities it is best to
-# set this value close to context size. For `gpt-4o` model this value is
+# set this value close to context size. For `gpt-5.1` model this value is
 # equal to 128_000 tokens
 
 
@@ -100,7 +100,7 @@ def main() -> None:
 
     log.info("\n=== Agent with Dynamic Token-Based Context Guard ===")
     agent_2 = Agent(
-        "openai:gpt-4o",
+        "openai:gpt-5.1",
         deps_type=MemoryState,
         history_processors=[context_guard],
         system_prompt="You are a helpful and concise assistant.",

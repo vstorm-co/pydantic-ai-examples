@@ -148,7 +148,7 @@ def my_processor(messages: list[ModelMessage]) -> list[ModelMessage]:
     """Transform history before agent processes it"""
     return [msg for msg in messages if isinstance(msg, ModelRequest)]
 
-agent = Agent("openai:gpt-4o", history_processors=[my_processor])
+agent = Agent("openai:gpt-5.1", history_processors=[my_processor])
 ```
 
 ### Important Constraint ⚠️
@@ -204,7 +204,7 @@ result_2 = agent.run_sync(
 def user_message_filter(messages: list[ModelMessage]) -> list[ModelMessage]:
     return [msg for msg in messages if isinstance(msg, ModelRequest)]
 
-agent = Agent("openai:gpt-4o", history_processors=[user_message_filter])
+agent = Agent("openai:gpt-5.1", history_processors=[user_message_filter])
 ```
 
 ### Pattern 3: Context Window Management
@@ -220,7 +220,7 @@ def keep_last_messages(
         else messages
     )
 
-agent = Agent("openai:gpt-4o", history_processors=[keep_last_messages])
+agent = Agent("openai:gpt-5.1", history_processors=[keep_last_messages])
 ```
 
 ### Pattern 4: Database Persistence
