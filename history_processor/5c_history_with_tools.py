@@ -78,7 +78,7 @@ def run_conversation_with_history_processor(history_processor: Callable[..., lis
     log.info(f"\n=== Running with history processor: {processor_name} ===")
 
     # Create agent with history processor
-    agent = Agent("openai:gpt-4o", system_prompt="You are a helpful and playful assistant", history_processors=[history_processor])
+    agent = Agent("openai:gpt-5.1", system_prompt="You are a helpful and playful assistant", history_processors=[history_processor])
 
     # Add basic tool
     @agent.tool

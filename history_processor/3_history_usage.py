@@ -21,7 +21,7 @@ load_dotenv()
 def main() -> None:
     """Run multi-turn conversation with persistence example."""
     # Create agent
-    agent = Agent(model="openai:gpt-4o", system_prompt="Be a helpful assistant")
+    agent = Agent(model="openai:gpt-5.1", system_prompt="Be a helpful assistant")
 
     # Turn 1: Get initial motto
     log.info("\n=== Turn 1 ===")

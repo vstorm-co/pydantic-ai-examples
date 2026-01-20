@@ -83,9 +83,9 @@ For the tools example, you'll need a free API key:
 2. Sign up for a free account
 3. Create a `.env` file in this directory:
 
-   ```
-   WEATHER_API_KEY=your_key_here
-   ```
+```bash
+WEATHER_API_KEY=your_key_here
+```
 
 ## Running the Examples
 

@@ -51,7 +51,7 @@ def main() -> None:
 
     # Create agent with message count limiter
     log.info("\n=== Agent with Fixed Message Limit (last 3) ===")
-    agent_1 = Agent("openai:gpt-4o", history_processors=[keep_last_messages])
+    agent_1 = Agent("openai:gpt-5.1", history_processors=[keep_last_messages])
     result_1 = agent_1.run_sync("What were we talking about?", message_history=history)
     log.info(f"Answer (with truncated history):\n{result_1.output}")
 

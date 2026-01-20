@@ -21,7 +21,7 @@ load_dotenv()
 def main() -> None:
     """Run multi-turn conversation example."""
     # Create agent
-    agent = Agent(model="openai:gpt-4o", system_prompt="Be a helpful assistant")
+    agent = Agent(model="openai:gpt-5.1", system_prompt="Be a helpful assistant")
 
     # First turn: Agent generates a joke
     prompt_1 = "Provide a really, really funny joke. Respond in plain text."
