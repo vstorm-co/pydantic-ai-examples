@@ -1,0 +1,99 @@
+"""
+Dynamic Classification with PydanticAI
+Demonstrates runtime-adaptable classification with dynamic Enums and Protocols.
+"""
+
+from enum import Enum
+from typing import Protocol, TypedDict
+
+from dotenv import load_dotenv
+from pydantic import BaseModel, Field, create_model
+from pydantic_ai import Agent
+
+
+class ClassificationResult(Protocol):
+    """Protocol defining the structure of classification results."""
+
+    category: Enum
+    reasoning: str
+
+
+class Example(TypedDict):
+    title: str
+    text: str
+    classes: list[str]
+    domain: str
+
+
+load_dotenv()
+
+
+def create_dynamic_classifier_model(classes: list[str]) -> type[ClassificationResult]:
+    """Dynamically create a Pydantic model with runtime-defined Enum classes."""
+    output_type = Enum("OutputClass", {cls: cls for cls in classes})
+
+    return create_model(
+        "DynamicResult",
+        category=(output_type, Field(description=f"Must be one of: {', '.join(classes)}")),
+        reasoning=(str, Field(min_length=10, description="Explanation for classification")),
+        __base__=BaseModel,
+    )
+
+
+async def classify(text: str, classes: list[str], domain: str = "category") -> ClassificationResult:
+    """Classify text into dynamically provided classes."""
+    result_model = create_dynamic_classifier_model(classes)
+
+    agent: Agent[None, ClassificationResult] = Agent(
+        "openai:gpt-5.2",
+        output_type=result_model,
+        system_prompt=f"Classify text into one of these {domain} categories: {', '.join(classes)}",
+    )
+
+    result = await agent.run(text)
+    return result.output
+
+
+EXAMPLES: list[Example] = [
+    {
+        "title": "5-Way Emotion",
+        "text": "I can't believe they cancelled my flight without notice!",
+        "classes": ["joy", "sadness", "anger", "fear", "neutral"],
+        "domain": "emotion",
+    },
+    {
+        "title": "Support Priority",
+        "text": "My account has been hacked and I can't access my funds!",
+        "classes": ["critical", "high", "medium", "low"],
+        "domain": "priority",
+    },
+    {
+        "title": "News Category",
+        "text": "Scientists discover new exoplanet with potential for life.",
+        "classes": ["science", "politics", "sports", "entertainment", "business", "technology"],
+        "domain": "category",
+    },
+]
+
+
+async def main():
+    print("Dynamic Classification with PydanticAI\n")
+    print("Same code adapts to any number of classes at runtime\n")
+    print("=" * 70)
+
+    for i, example in enumerate(EXAMPLES, 1):
+        print(f"\nExample {i}: {example['title']}")
+        print(f"Classes ({len(example['classes'])}): {example['classes']}")
+        print(f"Text: {example['text']}")
+
+        result = await classify(example["text"], example["classes"], example["domain"])
+
+        print(f"\nResult: {result.category}")
+        print(f"Reasoning: {result.reasoning}")
+        print("-" * 70)
+
+
+if __name__ == "__main__":
+    import asyncio
+
+    asyncio.run(main())
