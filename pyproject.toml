@@ -56,5 +56,12 @@ docstring-code-format = true
 unresolved-import = "ignore"
 possibly-missing-attribute = "ignore"
 
+[project.optional-dependencies]
+docs = [
+    "mkdocs-material",
+    "mkdocs-material-extensions",
+    "pymdown-extensions",
+]
+
 [project.urls]
 License = "https://opensource.org/license/mit/"

@@ -45,3 +45,4 @@ build/
 .ruff_cache
 ocr_parsing/files/results
 ocr_parsing/files/temp_files
+site/

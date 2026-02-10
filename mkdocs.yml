@@ -1,0 +1,81 @@
+site_name: PydanticAI Examples
+site_url: https://vstorm-co.github.io/pydantic-ai-examples/
+site_description: A comprehensive collection of examples demonstrating PydanticAI framework capabilities.
+
+repo_name: vstorm-co/pydantic-ai-examples
+repo_url: https://github.com/vstorm-co/pydantic-ai-examples
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - scheme: default
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Examples:
+      - examples/index.md
+      - Direct Model Requests: examples/direct-model-request.md
+      - Temperature: examples/temperature.md
+      - Reasoning Effort: examples/reasoning-effort.md
+      - Basic Sentiment: examples/basic-sentiment.md
+      - Dynamic Classification: examples/dynamic-classification.md
+      - Bielik (Local Models): examples/bielik.md
+      - History Processor: examples/history-processor.md
+      - OCR Parsing: examples/ocr-parsing.md
