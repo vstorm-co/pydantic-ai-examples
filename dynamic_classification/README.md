@@ -20,11 +20,49 @@ def create_dynamic_classifier(classes: list[str]) -> type[BaseModel]:
     )
 ```
 
+### Typed Version with Enums and Protocols
+
+For better typing and IDE support, use dynamic Enums with Protocol type hints. Under the hood PydanticAI sends literals as enums, so while more verbose it's more reflective of the actual data.
+
+```python
+from enum import Enum
+from typing import Protocol
+
+class ClassificationResult(Protocol):
+    """Protocol defining the structure of classification results."""
+    category: Enum
+    reasoning: str
+
+def create_dynamic_classifier_model(classes: list[str]) -> type[ClassificationResult]:
+    """Dynamically create a Pydantic model with runtime-defined Enum classes."""
+    output_type = Enum("OutputClass", {cls: cls for cls in classes})
+
+    return create_model(
+        "DynamicResult",
+        category=(output_type, Field(description=f"Must be one of: {', '.join(classes)}")),
+        reasoning=(str, Field(min_length=10, description="Explanation for classification")),
+        __base__=BaseModel,
+    )
+```
+
+This approach provides:
+
+- **Type safety**: Return type clearly indicates the structure via Protocol
+- **IDE support**: Autocomplete for `category` and `reasoning` fields
+- **Structured types**: Enum is a first-class type with additional functionality
+
 ## Running
 
 ```bash
 cd dynamic_classification
 uv run dynamic_classifier.py
+```
+
+or
+
+```bash
+cd dynamic_classification
+uv run dynamic_classifier_typed.py
 ```
 
 ## Output
