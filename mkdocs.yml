@@ -9,18 +9,18 @@ theme:
   name: material
   custom_dir: docs/overrides
   palette:
-    - scheme: default
-      primary: pink
-      accent: pink
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
     - scheme: slate
       primary: pink
       accent: pink
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+    - scheme: default
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
   font:
     text: Inter
     code: JetBrains Mono
