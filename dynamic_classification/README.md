@@ -20,8 +20,6 @@ def create_dynamic_classifier(classes: list[str]) -> type[BaseModel]:
     )
 ```
 
-
-
 ## Running
 
 ```bash
@@ -31,7 +29,7 @@ uv run dynamic_classifier.py
 
 ## Output
 
-```
+```zsh
 Dynamic Classification with PydanticAI
 
 Same code adapts to any number of classes at runtime
@@ -55,12 +53,14 @@ Reasoning: The text expresses strong enjoyment and enthusiasm, which maps to 'jo
 ## Why This Matters
 
 Traditional approaches require:
+
 1. Defining all possible classes upfront
 2. Recompiling/redeploying for new categories
 3. Separate models for different granularities
 
 With dynamic Literals, you get:
--  Runtime flexibility
--  Type safety preserved
--  Single codebase for all use cases
--  Easy experimentation
+
+- Runtime flexibility
+- Type safety preserved
+- Single codebase for all use cases
+- Easy experimentation
