@@ -25,7 +25,7 @@ async def test_reasoning_effort():
     efforts: list[ReasoningEffort] = ["low", "medium", "high"]
 
     for effort in efforts:
-        agent: Agent[None, Solution] = Agent(
+        agent = Agent[None, Solution](
             "openai:gpt-5.2",
             output_type=Solution,
             model_settings=OpenAIResponsesModelSettings(
@@ -55,7 +55,7 @@ async def test_complex_planning():
 
     print(f"Problem: {problem.strip()}\n")
 
-    agent: Agent[None, Solution] = Agent(
+    agent = Agent[None, Solution](
         "openai:gpt-5.2",
         output_type=Solution,
         model_settings=OpenAIResponsesModelSettings(

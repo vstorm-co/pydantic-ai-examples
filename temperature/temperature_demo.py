@@ -21,7 +21,7 @@ async def test_temperature_creative_writing():
 
     for temp in temperatures:
         agent = Agent[None, StoryOpening](
-            "openai:gpt-5.2",
+            "openai:gpt-4.1",
             output_type=StoryOpening,
             model_settings=ModelSettings(temperature=temp),
         )
