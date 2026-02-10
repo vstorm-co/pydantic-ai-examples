@@ -6,7 +6,7 @@ title: Getting Started
 
 ## Prerequisites
 
-- **Python 3.10+**
+- **Python 3.13+**
 - **[uv](https://docs.astral.sh/uv/)** package manager
 
 ## Setup
@@ -59,7 +59,7 @@ See the [Examples Overview](examples/index.md) for the full list and recommended
 ### Import Errors
 
 - Run `uv sync` to install all dependencies
-- Verify you're using Python 3.10+
+- Verify you're using Python 3.13+
 
 ### Async Issues
 

@@ -6,7 +6,7 @@ A comprehensive collection of examples demonstrating PydanticAI framework capabi
 
 ### System Requirements
 
-- Python 3.10+
+- Python 3.13+
 - `uv` package manager
 
 ### Environment Setup
@@ -328,7 +328,7 @@ Bielik example shows alternative to cloud APIs:
 ### Import Errors
 
 - Run `uv sync` to install all dependencies
-- Verify you're using Python 3.10+
+- Verify you're using Python 3.13+
 
 ### Async Issues
 
