@@ -34,6 +34,8 @@ echo "OPENAI_API_KEY=your-key-here" > .env
 7. **[History Processor](history_processor/)** - Multi-turn conversations
 8. **[OCR Parsing](ocr_parsing_demo/)** - Complex real-world document processing
 
+**[Local agent API](docs/examples/local-agent-api.md)** - Try a custom OpenAI-compatible endpoint with regular and streaming requests, without a model API key.
+
 ## Examples Overview
 
 ### 1. Direct Model Requests

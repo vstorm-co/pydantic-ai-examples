@@ -77,5 +77,6 @@ nav:
       - Basic Sentiment: examples/basic-sentiment.md
       - Dynamic Classification: examples/dynamic-classification.md
       - Bielik (Local Models): examples/bielik.md
+      - Local Agent API: examples/local-agent-api.md
       - History Processor: examples/history-processor.md
       - OCR Parsing: examples/ocr-parsing.md
